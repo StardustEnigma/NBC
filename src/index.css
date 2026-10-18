@@ -1,0 +1,712 @@
+/* ==========================================================================
+   NOTHING BUT CRUMBLE — LUXURY EDITORIAL DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+    --cream: #F6EFE4;
+    /* page background and intro background */
+    --cream-deep: #EDE3D2;
+    /* subtle shadow tint and soft spotlight on the intro */
+    --teal: #0F3B3A;
+    /* headings, primary buttons, arch panel */
+    --teal-soft: #4A5A57;
+    /* body text and inactive tabs */
+    --pink: #D9578F;
+    /* accent: italic headline phrase, active underline, hover, focus rings */
+    --gold: #B8964A;
+    /* ONLY 1px hairlines and frames (nav line, arch frame) */
+    --ivory: #FBF7F0;
+    /* text on teal backgrounds */
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+    --max-w: 1200px;
+}
+
+
+/* ===================================
+   Base & Reset
+   =================================== */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--cream);
+    color: var(--teal-soft);
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--cream);
+    color: var(--teal-soft);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.65;
+}
+
+::selection {
+    background: var(--pink);
+    color: var(--ivory);
+}
+
+
+/* Focus rings: 2px solid var(--pink), offset 3px */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--pink) !important;
+    outline-offset: 3px !important;
+}
+
+
+/* Shared Container: Left-aligned layout width */
+
+.site-container {
+    width: 100%;
+    max-width: var(--max-w);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+
+/* ===================================
+   Intro Gate Overlay & Opening Animation
+   =================================== */
+
+.intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: var(--cream);
+    background-image: radial-gradient(circle at 50% 48%, var(--cream-deep) 0%, var(--cream) 68%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 700ms ease;
+}
+
+.intro-overlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro-overlay.reduced-fade-out {
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+}
+
+.intro-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    padding: 1.5rem;
+}
+
+.intro-tin-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-tin-interactive {
+    position: relative;
+    z-index: 2;
+    transition: transform 150ms ease;
+}
+
+
+/* Floating animation: translateY 0 to -8px, 3s ease-in-out infinite */
+
+.intro-tin-floating {
+    animation: introTinFloat 3s ease-in-out infinite;
+}
+
+@keyframes introTinFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.intro-tin-trigger-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    width: 360px;
+    height: 360px;
+    max-width: 70vw;
+    max-height: 70vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    transition: transform 150ms ease;
+}
+
+.intro-tin-trigger-btn.pressed {
+    transform: scale(0.97);
+}
+
+.intro-tin-trigger-btn:focus-visible {
+    outline: 2px solid var(--pink) !important;
+    outline-offset: 3px !important;
+}
+
+.intro-tin-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.intro-tin-closed {
+    opacity: 1;
+    transition: opacity 500ms ease;
+    z-index: 2;
+}
+
+.intro-tin-closed.fade-out {
+    opacity: 0;
+}
+
+.intro-tin-open {
+    opacity: 0;
+    transition: opacity 500ms ease;
+    z-index: 1;
+}
+
+.intro-tin-open.fade-in {
+    opacity: 1;
+}
+
+
+/* Tin shadow: soft elliptical shadow under the tin, rgba(15, 59, 58, 0.18), blur 30px */
+
+.intro-tin-shadow {
+    width: 280px;
+    max-width: 58vw;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(15, 59, 58, 0.18);
+    filter: blur(30px);
+    margin-top: -24px;
+    pointer-events: none;
+    z-index: 1;
+    transition: transform 150ms ease, opacity 150ms ease;
+}
+
+.intro-shadow-floating {
+    animation: introShadowPulse 3s ease-in-out infinite;
+}
+
+@keyframes introShadowPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.95;
+    }
+    50% {
+        transform: scale(0.92);
+        opacity: 0.65;
+    }
+}
+
+
+/* "Press to open" button: Hanken Grotesk, 12px, uppercase, letter-spacing 0.14em */
+
+.intro-open-btn {
+    background: transparent;
+    border: none;
+    padding: 6px 0;
+    margin-top: 1.5rem;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    cursor: pointer;
+    position: relative;
+    transition: opacity 200ms ease;
+    z-index: 3;
+}
+
+.intro-open-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--pink);
+    transition: height 0.2s ease;
+}
+
+.intro-open-btn:hover::after {
+    height: 2px;
+}
+
+.intro-open-btn:focus-visible {
+    outline: 2px solid var(--pink) !important;
+    outline-offset: 3px !important;
+}
+
+.intro-open-btn.btn-fading-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Page wrapper underneath intro */
+
+.page-wrapper-underneath {
+    transition: opacity 700ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-tin-floating,
+    .intro-shadow-floating {
+        animation: none !important;
+    }
+    .intro-overlay {
+        transition: opacity 200ms ease !important;
+    }
+}
+
+
+/* ===================================
+   Navbar (Appearance preserved, non-navigating)
+   =================================== */
+
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(246, 239, 228, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gold);
+    padding: 1.25rem 0;
+    transition: padding 0.3s ease;
+}
+
+.nav-bar.scrolled {
+    padding: 0.85rem 0;
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+}
+
+.nav-emblem {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: none;
+    box-shadow: none;
+    flex-shrink: 0;
+}
+
+.nav-emblem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.nav-name {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 400;
+    color: var(--teal);
+    letter-spacing: normal;
+    text-transform: none;
+    line-height: 1;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-link {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-soft);
+    text-decoration: none;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--teal);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--pink);
+    transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.btn-nav-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    background: transparent;
+    border: 1px solid var(--teal);
+    border-radius: 2px;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-nav-outline:hover {
+    background: var(--teal);
+    color: var(--ivory);
+}
+
+
+/* ===================================
+   Hero Section (Layout & Fonts Untouched)
+   =================================== */
+
+.hero-wrapper {
+    position: relative;
+    min-height: 100vh;
+    padding: 150px 0 120px;
+    display: flex;
+    align-items: center;
+    background-color: var(--cream);
+}
+
+.hero-split-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 4.5rem;
+    width: 100%;
+}
+
+.hero-content-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(40px, 5.5vw, 76px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: 0;
+    color: var(--teal);
+    margin-bottom: 1.25rem;
+}
+
+.headline-italic-pink {
+    font-style: italic;
+    color: var(--pink);
+}
+
+.hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--teal-soft);
+    max-width: 44ch;
+    margin-bottom: 1.25rem;
+}
+
+.hero-tabs-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1.25rem;
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.hero-tab-btn {
+    background: transparent;
+    border: none;
+    padding: 0 0 6px 0;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-soft);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.hero-tab-btn:hover {
+    color: var(--teal);
+}
+
+.hero-tab-btn[aria-selected="true"] {
+    color: var(--teal);
+    border-bottom: 2px solid var(--pink);
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.btn-primary-teal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background-color: var(--teal);
+    color: var(--ivory);
+    border: none;
+    border-radius: 2px;
+    padding: 16px 32px;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background-color 0.25s ease;
+    text-decoration: none;
+}
+
+.btn-primary-teal:hover {
+    background-color: var(--pink);
+    color: var(--ivory);
+}
+
+.link-secondary-underline {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--teal);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.link-secondary-underline:hover {
+    color: var(--pink);
+    border-bottom-color: var(--pink);
+}
+
+.hero-feature-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gold);
+    width: 100%;
+}
+
+.feature-item {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--teal-soft);
+    white-space: nowrap;
+}
+
+.feature-divider {
+    width: 1px;
+    height: 14px;
+    background-color: var(--teal-soft);
+    opacity: 0.25;
+}
+
+
+/* ===================================
+   Product Arch & Gold Hairline Frame
+   =================================== */
+
+.hero-visual-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.arch-container-wrapper {
+    position: relative;
+    padding: 14px;
+    width: 100%;
+    max-width: 520px;
+    /* Increased from 440px to give more room */
+}
+
+.arch-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 0.85;
+    border-radius: 999px 999px 8px 8px;
+    background: var(--teal);
+    overflow: visible;
+    /* Changed from hidden to let the tin break out gracefully */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    /* Removed constricting padding */
+}
+
+.tin-mount-fadeup {
+    width: 118%;
+    /* Scaled up from 88% */
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+    transform: translate(-4%, 4%);
+    /* Slight offset to pop forward */
+    filter: drop-shadow(0 25px 35px rgba(15, 59, 58, 0.28));
+    z-index: 2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .tin-mount-fadeup {
+        animation: tinFadeUp 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+}
+
+@keyframes tinFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===================================
+   Responsive (Down to 375px)
+   =================================== */
+
+@media (max-width: 900px) {
+    .site-container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    .hero-wrapper {
+        padding: 120px 0 80px;
+    }
+    .hero-split-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+    .hero-content-col {
+        order: 1;
+        text-align: left;
+        align-items: flex-start;
+    }
+    .hero-visual-col {
+        order: 2;
+    }
+    .hero-feature-row {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    .feature-divider {
+        display: none;
+    }
+    .nav-menu {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        width: 100%;
+    }
+    .btn-primary-teal {
+        width: 100%;
+    }
+}
