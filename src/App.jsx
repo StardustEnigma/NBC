@@ -42,25 +42,25 @@ export default function App() {
             <ul className="nav-menu">
               <li>
                 <a
-                  href="#"
+                  href="#flavours"
                   className="nav-link"
                   onClick={(e) => e.preventDefault()}
                 >
-                  The Duet
+                  The Flavours
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#tin"
                   className="nav-link"
                   onClick={(e) => e.preventDefault()}
                 >
-                  The Tin
+                  The Keepsake Tin
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#gallery"
                   className="nav-link"
                   onClick={(e) => e.preventDefault()}
                 >
@@ -69,32 +69,33 @@ export default function App() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#story"
                   className="nav-link"
                   onClick={(e) => e.preventDefault()}
                 >
-                  Ingredients
+                  Our Story
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#order"
                   className="nav-link"
                   onClick={(e) => e.preventDefault()}
                 >
-                  Engrave
+                  How to Order
                 </a>
               </li>
             </ul>
           </nav>
 
-          <button
-            type="button"
-            className="btn-nav-outline"
-            onClick={(e) => e.preventDefault()}
+          <a
+            href="https://www.instagram.com/nothingbutcrumble/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-nav-order"
           >
-            Explore Tins
-          </button>
+            ORDER ON INSTAGRAM
+          </a>
         </div>
       </header>
 
@@ -106,12 +107,11 @@ export default function App() {
               {/* Left Column: Left-aligned content */}
               <div className="hero-content-col">
                 <h1 className="hero-title">
-                  Cookies worth{' '}
-                  <span className="headline-italic-pink">keeping the tin for.</span>
+                  Cookies worth<br className="desktop-break" /> keeping the tin for.
                 </h1>
 
                 <p className="hero-subtitle">
-                  Brown butter, single-origin chocolate and molten centres, sealed in a keepsake tin and baked to order in London.
+                  Three signature flavours, 100% vegetarian and baked to order in Nagpur. Sealed inside our keepsake gold tin.
                 </p>
 
                 {/* Product Selection Tabs */}
@@ -138,30 +138,29 @@ export default function App() {
 
                 {/* Hero Action Buttons */}
                 <div className="hero-actions">
-                  <button
-                    type="button"
-                    className="btn-primary-teal"
-                    onClick={(e) => e.preventDefault()}
+                  <a
+                    href="https://www.instagram.com/nothingbutcrumble/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary-green"
                   >
-                    Discover The Duet
-                  </button>
+                    ORDER ON INSTAGRAM
+                  </a>
 
                   <button
                     type="button"
-                    className="link-secondary-underline"
+                    className="btn-secondary-green"
                     onClick={(e) => e.preventDefault()}
                   >
-                    View Gallery
+                    VIEW GALLERY
                   </button>
                 </div>
 
-                {/* Feature Row */}
+                {/* Feature Row / Product Benefits with visible spacing */}
                 <div className="hero-feature-row">
-                  <span className="feature-item">21-day freshness</span>
-                  <span className="feature-divider" aria-hidden="true" />
-                  <span className="feature-item">Normandy butter</span>
-                  <span className="feature-divider" aria-hidden="true" />
-                  <span className="feature-item">Keepsake tin</span>
+                  <span className="feature-item">100% Vegetarian</span>
+                  <span className="feature-item">Made to Order</span>
+                  <span className="feature-item">Keepsake Gold Tin</span>
                 </div>
               </div>
 
