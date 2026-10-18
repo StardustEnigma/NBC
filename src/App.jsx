@@ -16,10 +16,10 @@ export default function App() {
       ? '/images/golden-tin-assorted.png'
       : '/images/gooey-tin-cookie.png'
 
-  const heroImageAlt =
+    const heroImageAlt =
     activeTin === 'assorted'
-      ? 'The Grand Assorted Nothing But Crumble cookie tin with red velvet, triple chocolate, and brown butter cookies'
-      : 'The Molten Deep-Dish Nothing But Crumble giant warm cookie in golden keepsake tin'
+      ? 'The Signature Duet Nothing But Crumble cookie tin with red velvet, triple chocolate, and brown butter cookies'
+      : 'The Gooey Deep-Dish Nothing But Crumble giant warm cookie in golden keepsake tin'
 
   return (
     <IntroGate>
@@ -104,6 +104,7 @@ export default function App() {
           <div className="site-container">
             <div className="hero-split-grid">
               {/* Left Column: Left-aligned content */}
+                            {/* Left Column: Left-aligned content */}
               <div className="hero-content-col">
                 <h1 className="hero-title">
                   Cookies worth{' '}
@@ -111,7 +112,7 @@ export default function App() {
                 </h1>
 
                 <p className="hero-subtitle">
-                  Brown butter, single-origin chocolate and molten centres, sealed in a keepsake tin and baked to order in London.
+                  Rich brown butter dough, molten puddle centres, and a pinch of flaky sea salt. Sealed warm inside our collectible keepsake tin, baked fresh daily in London.
                 </p>
 
                 {/* Product Selection Tabs */}
@@ -123,7 +124,7 @@ export default function App() {
                     className="hero-tab-btn"
                     onClick={() => setActiveTin('assorted')}
                   >
-                    The Assorted Tin
+                    The Signature Duet
                   </button>
                   <button
                     type="button"
@@ -132,7 +133,7 @@ export default function App() {
                     className="hero-tab-btn"
                     onClick={() => setActiveTin('gooey')}
                   >
-                    The Molten Deep-Dish
+                    The Gooey Deep-Dish
                   </button>
                 </div>
 
@@ -143,7 +144,7 @@ export default function App() {
                     className="btn-primary-teal"
                     onClick={(e) => e.preventDefault()}
                   >
-                    Discover The Duet
+                    Taste The Duet
                   </button>
 
                   <button
@@ -151,17 +152,17 @@ export default function App() {
                     className="link-secondary-underline"
                     onClick={(e) => e.preventDefault()}
                   >
-                    View Gallery
+                    Peek Inside 🍪
                   </button>
                 </div>
 
                 {/* Feature Row */}
                 <div className="hero-feature-row">
-                  <span className="feature-item">21-day freshness</span>
+                  <span className="feature-item">Fresh for 21 days (if they last!)</span>
                   <span className="feature-divider" aria-hidden="true" />
-                  <span className="feature-item">Normandy butter</span>
+                  <span className="feature-item">100% Normandy butter</span>
                   <span className="feature-divider" aria-hidden="true" />
-                  <span className="feature-item">Keepsake tin</span>
+                  <span className="feature-item">Forever keepsake tin</span>
                 </div>
               </div>
 

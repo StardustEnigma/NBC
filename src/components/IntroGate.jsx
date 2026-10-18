@@ -147,13 +147,15 @@ export default function IntroGate({ children }) {
             </div>
 
             {/* "Press to open" action button */}
-            <button
-              type="button"
-              className={`intro-open-btn ${isOpenTriggered ? 'btn-fading-out' : ''}`}
-              onClick={triggerOpen}
-            >
-              Press to open
-            </button>
+            {/* Currently: */}
+<button type="button" className={`intro-open-btn ${isOpenTriggered ? 'btn-fading-out' : ''}`}>
+  Press to open
+</button>
+
+{/* Cute alternative: */}
+<button type="button" className={`intro-open-btn ${isOpenTriggered ? 'btn-fading-out' : ''}`}>
+  Tap to uncap the tin ✨
+</button>
           </div>
         </aside>
       )}
